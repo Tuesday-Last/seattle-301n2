@@ -51,20 +51,20 @@ articleView.handleCategoryFilter = function() {
       $("article.not:.template template").fadeIn();
     }
   });
-  
+
 };
 
 articleView.handleMainNav = function() {
   $('.main-nav').on("click", 'li', function() {
     $(".tab-content").hide();
-    $("#" + $(this).data('content')).fadeIn();     
+    $("#" + $(this).data('content')).fadeIn();
   });
 
-  $('.main-nav .tab:first').click(); 
+  $('.main-nav .tab:first').click();
 
 articleView.setTeasers = function() {
   $('.article-body *:nth-of-type(n+2)').hide(); // Hide elements beyond the first 2 in any artcile body.
-  
+
   $('.read-on').on("click", function(e) {
     e.preventDefault();
     $('.read-on').parent().fadeIn();
@@ -79,7 +79,7 @@ articleView.setTeasers = function() {
 
 // TODO: Call all of the above functions, once we are sure the DOM is ready
 $(document).ready(function (){
-  articleView.populateFilters(); 
+  articleView.populateFilters();
   articleView.handleAuthorFilter();
   articleView.handleCategoryFilter();
   articleView.handleMainNav();

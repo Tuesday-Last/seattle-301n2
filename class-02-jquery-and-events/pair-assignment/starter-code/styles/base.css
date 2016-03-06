@@ -26,11 +26,16 @@ address {
 =======================================*/
 
 a, a:link, a:active {
-  color: #777;
+  color: #b41f1f;
+  text-decoration: none;
 }
 
 a:hover, a:focus {
+  color:#f65656;
+
 }
 
 a:visited {
+  color: #eebf77;
+
 }
