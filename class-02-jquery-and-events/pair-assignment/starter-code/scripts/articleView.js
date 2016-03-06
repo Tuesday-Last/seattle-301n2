@@ -51,13 +51,13 @@ articleView.handleCategoryFilter = function() {
       $("article.not:.template template").fadeIn();
     }
   });
-  
+
 };
 
 articleView.handleMainNav = function() {
   $('.main-nav').on("click", 'li', function() {
     $(".tab-content").hide();
-    $("#" + $(this).data('content')).fadeIn();     
+    $("#" + $(this).data('content')).fadeIn();
   });
 
   $('.main-nav .tab:first').click(); 
@@ -71,6 +71,7 @@ articleView.setTeasers = function() {
     console.log("clicked");
     })
   };
+
   // TODO: Add an event handler to reveal all the hidden elements,
   //       when the .read-on link is clicked. You can go ahead and hide the
   //       "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
@@ -81,7 +82,7 @@ articleView.setTeasers = function() {
 
 // TODO: Call all of the above functions, once we are sure the DOM is ready
 $(document).ready(function (){
-  articleView.populateFilters(); 
+  articleView.populateFilters();
   articleView.handleAuthorFilter();
   articleView.handleCategoryFilter();
   articleView.handleMainNav();
