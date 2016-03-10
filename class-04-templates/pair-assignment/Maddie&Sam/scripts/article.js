@@ -12,20 +12,20 @@ function Article (opts) {
 Article.prototype.toHtml = function() {
   // TODO: Use handlebars to render your articles.
   //       - Get your template from the DOM.
-  var getTemplate = $("#articleTemplate").html();
+  var getTemplate = $('#articleTemplate').html();
   //       - Now "compile" your template with Handlebars.
   var templateToCompile = Handlebars.compile(getTemplate);
 
   var context = {
-  author: this.author,
-  authorUrl: this.authorUrl,
-  title: this.title,
-  category: this.category,
-  body: this.body,
-  publishedOn: this.publishedOn,
-}
+    author: this.author,
+    authorUrl: this.authorUrl,
+    title: this.title,
+    category: this.category,
+    body: this.body,
+    publishedOn: this.publishedOn,
+  };
 
-var compiledTemplate = templateToCompile(context);
+  var compiledTemplate = templateToCompile(context);
   // DONE: If your template will use properties that aren't on the object yet, add them.
   //   Since your template can't hold any JS logic, we need to execute the logic here.
   //   The result is added to the object as a new property, which can then be referenced by key in the template.
@@ -43,8 +43,8 @@ rawData.sort(function(a,b) {
 
 rawData.forEach(function(ele) {
   articles.push(new Article(ele));
-})
+});
 
 articles.forEach(function(a){
-  $('#articles').append(a.toHtml())
+  $('#articles').append(a.toHtml());
 });
