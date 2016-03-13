@@ -17,15 +17,6 @@ Article.prototype.toHtml = function() {
   var templateToCompile = Handlebars.compile(getTemplate);
 
 
-  // var context = {
-  //   author: this.author,
-  //   authorUrl: this.authorUrl,
-  //   title: this.title,
-  //   category: this.category,
-  //   body: this.body,
-  //   publishedOn: this.publishedOn,
-  // };
-
 
   // DONE: If your template will use properties that aren't on the object yet, add them.
   //   Since your template can't hold any JS logic, we need to execute the logic here.
