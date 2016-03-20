@@ -1,5 +1,3 @@
-// TODO: Wrap the entire contents of this file in an IIFE.
-// Pass in to the IIFE a module, upon which objects can be attached for later access.
 (function(module) {
 
   function Article (opts) {
@@ -49,31 +47,26 @@
   Article.fetchAll = function(artCallback) {
     if (localStorage.rawData) {
       Article.loadAll(JSON.parse(localStorage.rawData));
-      // articleView.initIndexPage();
       artCallback();
     } else {
       $.getJSON('/data/hackerIpsum.json', function(rawData) {
         Article.loadAll(rawData);
         localStorage.rawData = JSON.stringify(rawData); // Cache the json, so we don't need to request it next time.
-        // articleView.initIndexPage();
         artCallback();
       });
     }
   };
 
-  // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
   Article.numWordsAll = function() {
     return Article.all.map(function(article) {
-      return article.body.length;
-      // Get the total number of words in this article
+      var wordArray =  article.body.split(" ");
+      return wordArray.length;
     })
     .reduce(function(a, b) {
       return a + b;
-      // Sum up all the values in the collection
     })
   };
 
-  // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names.
   Article.allAuthors = function() {
     return Article.all.map(function(article) {
       return article.author;
@@ -83,26 +76,23 @@
         }
         return a;
       }, [])
-    // Don't forget to read the docs on map and reduce!
   }
 
   Article.numWordsByAuthor = function() {
-    // TODO: Transform each author string into an object with 2 properties: One for
-    // the author's name, and one for the total number of words across all articles written by the specified author.
-    return Article.allAuthors().map(function(author) {
+    return Article.allAuthors().map(function(name) {
       return {
-        author: author,
-        wordCountPerArticle: Article.all.map(function(article){
-            if (article.author === author) {
-              return article.body.length;
+        name: name,
+        numWords: Article.all.map(function(article) {
+          if (article.author === name) {
+            var wordArray = article.body.split(" ");
+            return wordArray.length;
             }
-          }) .reduce(function(wordCount, wordCountPerArticle) {
-            wordCount + wordCountPerArticle;
-            return wordCount;
-          })
-        };
-          // someKey: someValOrFunctionCall().map(...).reduce(...), ...
-      })
-    }
+          return 0;
+          }) .reduce(function(wordCount, numWords) {
+              return  wordCount + numWords;
+        })
+      }
+    })
+  }
   module.Article = Article;
 })(window);
