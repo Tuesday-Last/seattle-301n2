@@ -31,17 +31,16 @@
   };
 
   // TODO: Correct the SQL to delete all records from the articles table.
-  // Article.truncateTable = function(callback) {
-  //   webDB.execute(
-  //     'DELETE * FROM articleTable;',
-  //     callback
-  //   );
-  // };
+  Article.truncateTable = function(callback) {
+    webDB.execute(
+      'DELETE FROM articleTable;',
+      callback
+    );
+  };
 
 
   // TODO: Insert an article instance into the database:
   Article.prototype.insertRecord = function(callback) {
-    console.log("somthing", article.title);
     webDB.execute(
       [
         {
@@ -58,8 +57,8 @@
     webDB.execute(
       [
         {
-          'sql': 'DELETE * FROM articleTable WHERE title = ?',
-          'data': '[article.title]'
+          'sql': 'DELETE FROM articleTable WHERE title = ?',
+          'data': [this.title]
         }
       ],
       callback
@@ -71,8 +70,8 @@
     webDB.execute(
       [
         {
-          'sql': 'UPDATE ?, ?, ?, ?, ?, ? FROM articleTable WHERE title = ?',
-          'data': "[article.title, article.category, article.author, article.authorUrl, article.publishedOn, article.body, article.title]",
+          'sql': 'UPDATE articleTable SET (title = ?, category = ?, author = ?, authorUrl = ?, publishedOn = ?, body = ?) WHERE title = ?',
+          'data': [this.title, this.category, this.author, this.authorUrl, this.publishedOn, this.body, this.title],
         }
       ],
       callback
@@ -93,6 +92,7 @@
     webDB.execute('SELECT * FROM articleTable', function(rows) {
       if (rows.length) {
         Article.loadAll(rows);
+        next();
 
       } else {
         console.log("Else being run")
@@ -102,16 +102,17 @@
           rawData.forEach(function(item) {
             var article = new Article(item); // Instantiate an article based on item from JSON
             // Cache the newly-instantiated article in DB:
-            Article.prototype.insertRecord(item)
+            article.insertRecord();
 
 
           });
           // Now get ALL the records out the DB, with their database IDs:
           // webDB.execute('INSERT INTO articleTable; VALUE [id, article.title, article.category, article.author, article.authorUrl, article.publishedOn, article.body]',
-          //   function(rows) {
-          //     Article.loadAll(row);
-          //   // Now instanitate those rows with the .loadAll function, and pass control to the view.
-          // });
+          webDB.execute('SELECT * FROM articleTable', function(rows) {
+              Article.loadAll(rows);
+              next();
+            // Now instanitate those rows with the .loadAll function, and pass control to the view.
+          });
         });
       }
     });
