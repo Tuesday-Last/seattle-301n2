@@ -39,7 +39,7 @@
   };
 
 
-  // TODO: Insert an article instance into the database:
+  // DONE: Insert an article instance into the database:
   Article.prototype.insertRecord = function(callback) {
     webDB.execute(
       [
@@ -52,7 +52,7 @@
     );
   };
 
-  // TODO: Delete an article instance from the database:
+  // DONE: Delete an article instance from the database:
   Article.prototype.deleteRecord = function(callback) {
     webDB.execute(
       [
@@ -65,7 +65,7 @@
     );
   };
 
-  // TODO: Update an article instance, overwriting it's properties into the corresponding record in the database:
+  // DONE: Update an article instance, overwriting it's properties into the corresponding record in the database:
   Article.prototype.updateRecord = function(callback) {
     webDB.execute(
       [
@@ -85,7 +85,7 @@
     });
   };
 
-  // TODO: Refactor this to check if the database holds any records or not. If the DB is empty,
+  // DONE: Refactor this to check if the database holds any records or not. If the DB is empty,
   // we need to retrieve the JSON and process it.
   // If the DB has data already, we'll load up the data (sorted!), and then hand off control to the View.
   Article.fetchAll = function(next) {
@@ -95,7 +95,6 @@
         next();
 
       } else {
-        console.log("Else being run")
         $.getJSON('/data/hackerIpsum.json', function(rawData) {
           // Cache the json, so we don't need to request it next time:
           localStorage.rawData = JSON.stringify(rawData);
