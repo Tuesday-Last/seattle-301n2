@@ -8,7 +8,10 @@
  - As a reader, I only want to have to fetch data when it's updated (and keep it cached locally), so that I don't make unneeded AJAX calls.
 
 ## Technical Requirements and Grading Rubric
+<<<<<<< HEAD
  - Transfer your collection of data over to a .json file, replacing your original file.
+=======
+>>>>>>> 2530535780f344b9ad972cced14d67763c433b55
  - Continue to follow good SMACSS principles.
  - Be sure to use the correct jQuery method for each AJAX call.
  - Be thoughtful when functions are executed asynchronously. This is a major source of bugs!

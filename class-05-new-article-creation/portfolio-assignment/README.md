@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Portfolio Assignment for Class 5 - Code Review
 
 Work in pairs to improve your portfolio.
@@ -21,3 +22,8 @@ Once you both have a few issues logged, start writing code together.
 The Driver will work on the Navigator's codebase. The Navigator can talk them through what is where, and how changes should be made, and the Driver can implement them.
 
 Switch after you've worked through a few issues. Switch back again (and again) if time allows.
+=======
+# Portfolio Assignment for Class 5 - New Article Creation
+
+No new submission required. Keep working on making your portfolio look great! 
+>>>>>>> 2530535780f344b9ad972cced14d67763c433b55

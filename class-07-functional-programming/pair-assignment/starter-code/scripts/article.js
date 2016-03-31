@@ -26,7 +26,11 @@ Article.loadAll = function(rawData) {
     return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
   });
 
+<<<<<<< HEAD
   // DONE: Refactor this forEach code, by using a `.map` call instead, since what we are trying to accomplish
+=======
+  // DONE: Refactor this forEach code, by using a `.map` call instead, since want we are trying to accomplish
+>>>>>>> 2530535780f344b9ad972cced14d67763c433b55
   // is the transformation of one colleciton into another.
   // rawData.forEach(function(ele) {
   //   Article.all.push(new Article(ele));
@@ -38,12 +42,17 @@ Article.loadAll = function(rawData) {
 
 // This function will retrieve the data from either a local or remote source,
 // and process it, then hand off control to the View.
+<<<<<<< HEAD
 
 // TODO: Refactor this function, and provide it with a parameter of a callback function
 //(for now just a placeholder, but to be referenced at call time as a view function)
 // to execute once the loading of articles is done. We do this because we might want
 // to call other view functions, and not just this initIndexPage() that we are replacing.
 // Now, instead of calling articleView.initIndexPage(), we can simply run our callback.
+=======
+// TODO: Refactor this function, so it accepts an argument of a callback function (likely a view function)
+// to execute once the loading of articles is done.
+>>>>>>> 2530535780f344b9ad972cced14d67763c433b55
 Article.fetchAll = function() {
   if (localStorage.rawData) {
     Article.loadAll(JSON.parse(localStorage.rawData));

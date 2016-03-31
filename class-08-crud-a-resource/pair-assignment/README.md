@@ -5,7 +5,11 @@ The starter code is all set for you and a pair to dive it, and get it working! O
 ## User Stories: MVP
  - As a developer, I want article data to persist with SQL, so that I can store more, faster and have more query flexibility.
 
+<<<<<<< HEAD
 This means you'll want to be able to do full CRUD on articles in the database. You'll have to use SQL to make a table for articles (and clear out the table for troubleshooting), with a class-level method attached to the constructor function (because it does not apply to any single instance). Then teach each article instance how to write or update itself to the database, or delete itself, via instance methods (available for use as needed in the code).
+=======
+This means you'll want to be able to do full CRUD on articles in the database. You'll have to use SQL to make a table for articles (and clear out the table for troubleshooting), and then teach each article instance how to write or update itself to the database, or delete itself.
+>>>>>>> 2530535780f344b9ad972cced14d67763c433b55
 
 Crucially, you'll need to trace through the app logic, and all those callback functions to determine WHEN is the right time to load data, or convert JSON.
 

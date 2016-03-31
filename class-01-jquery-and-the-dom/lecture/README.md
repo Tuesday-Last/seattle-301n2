@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Daily Plan
 1. Kickoff Slides
 2. Agile & MVC
@@ -23,3 +24,8 @@
 - [Part 1/3](https://youtu.be/1PeJkC_FpKI)
 - [Part 2/3](https://youtu.be/12TZAMY7Ouw)
 - [Part 3/3](https://youtu.be/xqV3JBqR-8o)
+=======
+
+
+# Class videos
+>>>>>>> 2530535780f344b9ad972cced14d67763c433b55
