@@ -7,6 +7,7 @@
   // code that used to be in index.html.
   // Also be sure to hide all the main section elements, and reveal the #articles section:
   articlesController.index = function() {
+<<<<<<< HEAD
     Article.createTable();
     Article.fetchAll(articleView.initIndexPage);
       $('#about').hide();
@@ -14,5 +15,10 @@
     // });
 
   };
+=======
+
+  };
+
+>>>>>>> 849def463d4047f397eccae7148e95f6b7718604
   module.articlesController = articlesController;
 })(window);

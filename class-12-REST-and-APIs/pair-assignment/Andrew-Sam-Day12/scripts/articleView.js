@@ -1,16 +1,28 @@
-// DONE: Wrap the entire contents of this file in an IIFE.
-// Pass in to the IIFE a module, upon which objects can be attached for later access.
 (function(module) {
 
   // Configure a view object, to hold all our functions for dynamic updates and article-related event handlers.
   var articleView = {};
+
+  // DONE: Convert the model .toHTML method to a proper View method, since it handles the presentation of the data:
+  var render = function(article) {
+    var template = Handlebars.compile($('#article-template').text());
+
+    article.daysAgo = parseInt((new Date() - new Date(article.publishedOn))/60/60/24/1000);
+    article.publishStatus = article.publishedOn ? 'published ' + article.daysAgo + ' days ago' : '(draft)';
+    article.body = marked(article.body);
+
+    return template(article);
+  };
 
   articleView.populateFilters = function() {
     $('article').each(function() {
       if (!$(this).hasClass('template')) {
         var val = $(this).find('address a').text();
         var optionTag = '<option value="' + val + '">' + val + '</option>';
-        $('#author-filter').append(optionTag);
+        // Done: Ensure authors listed in the filter are unique
+        if ($('#author-filter option[value="' + val + '"]').length === 0) {
+          $('#author-filter').append(optionTag);
+        }
 
         val = $(this).attr('data-category');
         optionTag = '<option value="' + val + '">' + val + '</option>';
@@ -47,15 +59,6 @@
     });
   };
 
-  articleView.handleMainNav = function() {
-    $('.main-nav').on('click', '.tab', function(e) {
-      $('.tab-content').hide();
-      $('#' + $(this).data('content')).fadeIn();
-    });
-
-    $('.main-nav .tab:first').click();
-  };
-
   articleView.setTeasers = function() {
     $('.article-body *:nth-of-type(n+2)').hide();
 
@@ -90,7 +93,7 @@
       publishedOn: $('#article-published:checked').length ? util.today() : null
     });
 
-    $('#articles').append(article.toHtml());
+    $('#articles').append(render(article));
 
     $('pre code').each(function(i, block) {
       hljs.highlightBlock(block);
@@ -103,28 +106,22 @@
 
   articleView.initIndexPage = function() {
     Article.all.forEach(function(a){
-      $('#articles').append(a.toHtml())
+      $('#articles').append(render(a));
     });
 
     articleView.populateFilters();
     articleView.handleCategoryFilter();
     articleView.handleAuthorFilter();
-    articleView.handleMainNav();
     articleView.setTeasers();
   };
 
   articleView.initAdminPage = function() {
-    // TODO: Call the Handlebars `.compile` function, which will return a function for you to use where needed.
-    var template; // = ...?
+    var template = Handlebars.compile($('#author-template').text());
 
-    // DONE: We use `forEach` here because we are relying on the side-effects of the callback function:
-    // appending to the DOM.
-    // The callback is not required to return anything.
     Article.numWordsByAuthor().forEach(function(stat) {
       $('.author-stats').append(template(stat));
-    })
+    });
 
-    // DONE: Simply write the correct values to the page:
     $('#blog-stats .articles').text(Article.all.length);
     $('#blog-stats .words').text(Article.numWordsAll());
   };
