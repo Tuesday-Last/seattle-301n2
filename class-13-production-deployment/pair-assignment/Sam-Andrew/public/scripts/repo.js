@@ -7,9 +7,8 @@
 
   repos.requestRepos = function(callback) {
     $.ajax({
-        url: 'http://localhost:3000',
-        type: 'POST'
-        data: proxyGitHub(),
+      type: 'GET',
+        url: '/github/user/repos',
       success: function(data, message, xhr) {
         repos.all = data;
       }
