@@ -122,7 +122,9 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
-  //
+  //This function handles setting everything to the DOM, first it shows the #articles section and hides the other sections,
+  //Clears all dom eles with the id article with in #articles then repopulates #articles with everything in articles,
+  //then it calls both articleView.populateFilters(); articleView.handleFilters();
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
 
