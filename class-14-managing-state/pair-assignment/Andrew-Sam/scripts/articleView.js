@@ -13,6 +13,9 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  //This function poulates the fileters, first compiles the handlebars, sets options by calling Article.allAuthors() to get a unique list of authors,
+  //checkes to make sure the list hasn't been populated, if not it then appends the filled handlebars templates to the list.
+  //catagoiries is similare but pulls it's list from the DB instead of the DOM
   articleView.populateFilters = function() {
     var options,
       template = Handlebars.compile($('#option-template').text());
@@ -38,6 +41,7 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  //this function creates the URL of the filtered page, resource will be be either "#id", "#author" or "#category" and then write a URL without spaces and the proper syntax
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
       resource = this.id.replace('-filter', '');
@@ -118,6 +122,7 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  //
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
 
