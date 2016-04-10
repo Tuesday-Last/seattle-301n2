@@ -9,8 +9,7 @@
   };
 
   var render = function(repo) {
-    return $('<li>')
-      .html('<a href="' + repo.html_url + '">' + repo.full_name + '</a>');
+    return $('<li>').html('<a href="' + repo.html_url + '">' + repo.full_name + '</a>');
   };
 
   repoView.index = function() {
